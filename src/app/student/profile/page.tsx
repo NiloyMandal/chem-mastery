@@ -92,7 +92,7 @@ export default function ProfilePage() {
                         <div className="space-y-6">
                             {/* Name Field */}
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
                                     <User className="w-4 h-4" />
                                     Full Name
                                 </label>
@@ -111,7 +111,7 @@ export default function ProfilePage() {
 
                             {/* Email Field (Read-only) */}
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
                                     <Mail className="w-4 h-4" />
                                     Email Address
                                 </label>

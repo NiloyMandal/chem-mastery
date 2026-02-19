@@ -313,7 +313,7 @@ export default function ChemistryLab() {
                             initial={{ opacity: 0, scale: 0.9, y: -20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="absolute top-20 lg:top-24 left-4 right-4 lg:left-auto lg:right-auto lg:left-1/2 lg:-translate-x-1/2 z-10 bg-white/95 backdrop-blur-md p-4 lg:p-6 rounded-2xl shadow-2xl max-w-lg w-auto text-center border border-slate-200"
+                            className="absolute top-20 lg:top-24 left-4 right-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 z-10 bg-white/95 backdrop-blur-md p-4 lg:p-6 rounded-2xl shadow-2xl max-w-lg w-auto text-center border border-slate-200"
                         >
                             <p className="text-base lg:text-xl font-bold text-indigo-700 mb-2 font-mono">{reactionResult.equation}</p>
                             <p className="text-slate-700 text-sm lg:text-base">{reactionResult.description}</p>
