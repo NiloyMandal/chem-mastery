@@ -1,0 +1,182 @@
+// Periodic Table Element Data with extended properties for "Smart" features
+export interface Element {
+    number: number;
+    symbol: string;
+    name: string;
+    mass: number;
+    category: string;
+    col: number;
+    row: number;
+    electronegativity?: number; // Pauling scale
+    atomicRadius?: number; // pm
+    electronConfig: string;
+    standardState: 'solid' | 'liquid' | 'gas';
+    meltingPoint?: number; // Kelvin
+    boilingPoint?: number; // Kelvin
+    density?: number; // g/cm³ at room temperature
+    oxidationStates?: number[]; // Common oxidation states
+    commonUses?: string; // Real-world applications
+    yearDiscovered?: number;
+}
+
+export const CATEGORIES = {
+    'alkali-metal': { label: 'Alkali Metals', color: 'bg-red-300 border-red-400', hoverColor: 'hover:bg-red-400' },
+    'alkaline-earth': { label: 'Alkaline Earth', color: 'bg-orange-300 border-orange-400', hoverColor: 'hover:bg-orange-400' },
+    'transition': { label: 'Transition Metals', color: 'bg-yellow-300 border-yellow-400', hoverColor: 'hover:bg-yellow-400' },
+    'post-transition': { label: 'Post-Transition', color: 'bg-green-300 border-green-400', hoverColor: 'hover:bg-green-400' },
+    'metalloid': { label: 'Metalloids', color: 'bg-emerald-300 border-emerald-400', hoverColor: 'hover:bg-emerald-400' },
+    'nonmetal': { label: 'Nonmetals', color: 'bg-blue-300 border-blue-400', hoverColor: 'hover:bg-blue-400' },
+    'halogen': { label: 'Halogens', color: 'bg-indigo-300 border-indigo-400', hoverColor: 'hover:bg-indigo-400' },
+    'noble-gas': { label: 'Noble Gases', color: 'bg-purple-300 border-purple-400', hoverColor: 'hover:bg-purple-400' },
+    'lanthanide': { label: 'Lanthanides', color: 'bg-pink-300 border-pink-400', hoverColor: 'hover:bg-pink-400' },
+    'actinide': { label: 'Actinides', color: 'bg-rose-300 border-rose-400', hoverColor: 'hover:bg-rose-400' },
+};
+
+export const ELEMENTS: Element[] = [
+    // Period 1
+    { number: 1, symbol: 'H', name: 'Hydrogen', mass: 1.008, category: 'nonmetal', col: 1, row: 1, electronegativity: 2.20, atomicRadius: 53, electronConfig: '1s¹', standardState: 'gas', meltingPoint: 14, boilingPoint: 20, density: 0.00009, oxidationStates: [1, -1], commonUses: 'Fuel cells, rocket fuel, ammonia production, hydrogenation of fats', yearDiscovered: 1766 },
+    { number: 2, symbol: 'He', name: 'Helium', mass: 4.0026, category: 'noble-gas', col: 18, row: 1, electronegativity: undefined, atomicRadius: 31, electronConfig: '1s²', standardState: 'gas', meltingPoint: 1, boilingPoint: 4, density: 0.00018, oxidationStates: [], commonUses: 'Balloons, cryogenics, MRI machines, diving gas mixtures', yearDiscovered: 1868 },
+
+    // Period 2
+    { number: 3, symbol: 'Li', name: 'Lithium', mass: 6.94, category: 'alkali-metal', col: 1, row: 2, electronegativity: 0.98, atomicRadius: 167, electronConfig: '[He] 2s¹', standardState: 'solid', meltingPoint: 454, boilingPoint: 1603, oxidationStates: [1] },
+    { number: 4, symbol: 'Be', name: 'Beryllium', mass: 9.0122, category: 'alkaline-earth', col: 2, row: 2, electronegativity: 1.57, atomicRadius: 112, electronConfig: '[He] 2s²', standardState: 'solid', meltingPoint: 1560, boilingPoint: 2742, oxidationStates: [2] },
+    { number: 5, symbol: 'B', name: 'Boron', mass: 10.81, category: 'metalloid', col: 13, row: 2, electronegativity: 2.04, atomicRadius: 87, electronConfig: '[He] 2s² 2p¹', standardState: 'solid', meltingPoint: 2349, boilingPoint: 4200, oxidationStates: [3] },
+    { number: 6, symbol: 'C', name: 'Carbon', mass: 12.011, category: 'nonmetal', col: 14, row: 2, electronegativity: 2.55, atomicRadius: 67, electronConfig: '[He] 2s² 2p²', standardState: 'solid', meltingPoint: 3823, boilingPoint: 4098, density: 2.26, oxidationStates: [4, 2, -4], commonUses: 'Steel production, pencils (graphite), diamonds, organic compounds, carbon fiber' },
+    { number: 7, symbol: 'N', name: 'Nitrogen', mass: 14.007, category: 'nonmetal', col: 15, row: 2, electronegativity: 3.04, atomicRadius: 56, electronConfig: '[He] 2s² 2p³', standardState: 'gas', meltingPoint: 63, boilingPoint: 77, density: 0.0013, oxidationStates: [5, 4, 3, 2, -3], commonUses: 'Fertilizers, explosives, food preservation, liquid nitrogen cooling' },
+    { number: 8, symbol: 'O', name: 'Oxygen', mass: 15.999, category: 'nonmetal', col: 16, row: 2, electronegativity: 3.44, atomicRadius: 48, electronConfig: '[He] 2s² 2p⁴', standardState: 'gas', meltingPoint: 54, boilingPoint: 90, density: 0.0014, oxidationStates: [-2], commonUses: 'Respiration, combustion, water purification, medical oxygen, rocket oxidizer' },
+    { number: 9, symbol: 'F', name: 'Fluorine', mass: 18.998, category: 'halogen', col: 17, row: 2, electronegativity: 3.98, atomicRadius: 42, electronConfig: '[He] 2s² 2p⁵', standardState: 'gas', meltingPoint: 53, boilingPoint: 85, density: 0.0017, oxidationStates: [-1], commonUses: 'Toothpaste (fluoride), Teflon, refrigerants, uranium enrichment' },
+    { number: 10, symbol: 'Ne', name: 'Neon', mass: 20.180, category: 'noble-gas', col: 18, row: 2, electronegativity: undefined, atomicRadius: 38, electronConfig: '[He] 2s² 2p⁶', standardState: 'gas', meltingPoint: 25, boilingPoint: 27, oxidationStates: [] },
+
+    // Period 3
+    { number: 11, symbol: 'Na', name: 'Sodium', mass: 22.990, category: 'alkali-metal', col: 1, row: 3, electronegativity: 0.93, atomicRadius: 190, electronConfig: '[Ne] 3s¹', standardState: 'solid', meltingPoint: 371, boilingPoint: 1156, oxidationStates: [1] },
+    { number: 12, symbol: 'Mg', name: 'Magnesium', mass: 24.305, category: 'alkaline-earth', col: 2, row: 3, electronegativity: 1.31, atomicRadius: 145, electronConfig: '[Ne] 3s²', standardState: 'solid', meltingPoint: 923, boilingPoint: 1363, oxidationStates: [2] },
+    { number: 13, symbol: 'Al', name: 'Aluminium', mass: 26.982, category: 'post-transition', col: 13, row: 3, electronegativity: 1.61, atomicRadius: 118, electronConfig: '[Ne] 3s² 3p¹', standardState: 'solid', meltingPoint: 933, boilingPoint: 2792, density: 2.70, oxidationStates: [3], commonUses: 'Aircraft, cans, foil, construction, electrical transmission' },
+    { number: 14, symbol: 'Si', name: 'Silicon', mass: 28.085, category: 'metalloid', col: 14, row: 3, electronegativity: 1.90, atomicRadius: 111, electronConfig: '[Ne] 3s² 3p²', standardState: 'solid', meltingPoint: 1687, boilingPoint: 3538, density: 2.33, oxidationStates: [4, -4], commonUses: 'Computer chips, solar cells, glass, semiconductors' },
+    { number: 15, symbol: 'P', name: 'Phosphorus', mass: 30.974, category: 'nonmetal', col: 15, row: 3, electronegativity: 2.19, atomicRadius: 98, electronConfig: '[Ne] 3s² 3p³', standardState: 'solid', meltingPoint: 317, boilingPoint: 554, density: 1.82, oxidationStates: [5, 3, -3], commonUses: 'Fertilizers, matches, detergents, pesticides' },
+    { number: 16, symbol: 'S', name: 'Sulfur', mass: 32.06, category: 'nonmetal', col: 16, row: 3, electronegativity: 2.58, atomicRadius: 88, electronConfig: '[Ne] 3s² 3p⁴', standardState: 'solid', meltingPoint: 388, boilingPoint: 718, oxidationStates: [6, 4, 2, -2] },
+    { number: 17, symbol: 'Cl', name: 'Chlorine', mass: 35.45, category: 'halogen', col: 17, row: 3, electronegativity: 3.16, atomicRadius: 79, electronConfig: '[Ne] 3s² 3p⁵', standardState: 'gas', meltingPoint: 172, boilingPoint: 239, oxidationStates: [7, 5, 3, 1, -1] },
+    { number: 18, symbol: 'Ar', name: 'Argon', mass: 39.948, category: 'noble-gas', col: 18, row: 3, electronegativity: undefined, atomicRadius: 71, electronConfig: '[Ne] 3s² 3p⁶', standardState: 'gas', meltingPoint: 84, boilingPoint: 87, oxidationStates: [] },
+
+    // Period 4
+    { number: 19, symbol: 'K', name: 'Potassium', mass: 39.098, category: 'alkali-metal', col: 1, row: 4, electronegativity: 0.82, atomicRadius: 243, electronConfig: '[Ar] 4s¹', standardState: 'solid', meltingPoint: 337, boilingPoint: 1032, oxidationStates: [1] },
+    { number: 20, symbol: 'Ca', name: 'Calcium', mass: 40.078, category: 'alkaline-earth', col: 2, row: 4, electronegativity: 1.00, atomicRadius: 194, electronConfig: '[Ar] 4s²', standardState: 'solid', meltingPoint: 1115, boilingPoint: 1757, oxidationStates: [2] },
+    { number: 21, symbol: 'Sc', name: 'Scandium', mass: 44.956, category: 'transition', col: 3, row: 4, electronegativity: 1.36, atomicRadius: 184, electronConfig: '[Ar] 3d¹ 4s²', standardState: 'solid', meltingPoint: 1814, boilingPoint: 3109, oxidationStates: [3] },
+    { number: 22, symbol: 'Ti', name: 'Titanium', mass: 47.867, category: 'transition', col: 4, row: 4, electronegativity: 1.54, atomicRadius: 176, electronConfig: '[Ar] 3d² 4s²', standardState: 'solid', meltingPoint: 1941, boilingPoint: 3560, oxidationStates: [4, 3] },
+    { number: 23, symbol: 'V', name: 'Vanadium', mass: 50.942, category: 'transition', col: 5, row: 4, electronegativity: 1.63, atomicRadius: 171, electronConfig: '[Ar] 3d³ 4s²', standardState: 'solid', meltingPoint: 2183, boilingPoint: 3680, oxidationStates: [5, 4, 3, 2] },
+    { number: 24, symbol: 'Cr', name: 'Chromium', mass: 51.996, category: 'transition', col: 6, row: 4, electronegativity: 1.66, atomicRadius: 166, electronConfig: '[Ar] 3d⁵ 4s¹', standardState: 'solid', meltingPoint: 2180, boilingPoint: 2944, oxidationStates: [6, 3, 2] },
+    { number: 25, symbol: 'Mn', name: 'Manganese', mass: 54.938, category: 'transition', col: 7, row: 4, electronegativity: 1.55, atomicRadius: 161, electronConfig: '[Ar] 3d⁵ 4s²', standardState: 'solid', meltingPoint: 1519, boilingPoint: 2334, oxidationStates: [7, 4, 2] },
+    { number: 26, symbol: 'Fe', name: 'Iron', mass: 55.845, category: 'transition', col: 8, row: 4, electronegativity: 1.83, atomicRadius: 156, electronConfig: '[Ar] 3d⁶ 4s²', standardState: 'solid', meltingPoint: 1811, boilingPoint: 3134, density: 7.87, oxidationStates: [3, 2], commonUses: 'Steel, construction, tools, vehicles, hemoglobin in blood' },
+    { number: 27, symbol: 'Co', name: 'Cobalt', mass: 58.933, category: 'transition', col: 9, row: 4, electronegativity: 1.88, atomicRadius: 152, electronConfig: '[Ar] 3d⁷ 4s²', standardState: 'solid', meltingPoint: 1768, boilingPoint: 3200, density: 8.90, oxidationStates: [3, 2], commonUses: 'Batteries, magnets, blue pigments, alloys' },
+    { number: 28, symbol: 'Ni', name: 'Nickel', mass: 58.693, category: 'transition', col: 10, row: 4, electronegativity: 1.91, atomicRadius: 149, electronConfig: '[Ar] 3d⁸ 4s²', standardState: 'solid', meltingPoint: 1728, boilingPoint: 3186, density: 8.91, oxidationStates: [3, 2], commonUses: 'Stainless steel, coins, batteries, electroplating' },
+    { number: 29, symbol: 'Cu', name: 'Copper', mass: 63.546, category: 'transition', col: 11, row: 4, electronegativity: 1.90, atomicRadius: 145, electronConfig: '[Ar] 3d¹⁰ 4s¹', standardState: 'solid', meltingPoint: 1358, boilingPoint: 2835, density: 8.96, oxidationStates: [2, 1], commonUses: 'Electrical wiring, plumbing, electronics, coins' },
+    { number: 30, symbol: 'Zn', name: 'Zinc', mass: 65.38, category: 'transition', col: 12, row: 4, electronegativity: 1.65, atomicRadius: 142, electronConfig: '[Ar] 3d¹⁰ 4s²', standardState: 'solid', meltingPoint: 693, boilingPoint: 1180, oxidationStates: [2] },
+    { number: 31, symbol: 'Ga', name: 'Gallium', mass: 69.723, category: 'post-transition', col: 13, row: 4, electronegativity: 1.81, atomicRadius: 136, electronConfig: '[Ar] 3d¹⁰ 4s² 4p¹', standardState: 'solid', meltingPoint: 303, boilingPoint: 2477, oxidationStates: [3] },
+    { number: 32, symbol: 'Ge', name: 'Germanium', mass: 72.63, category: 'metalloid', col: 14, row: 4, electronegativity: 2.01, atomicRadius: 125, electronConfig: '[Ar] 3d¹⁰ 4s² 4p²', standardState: 'solid', meltingPoint: 1211, boilingPoint: 3106, oxidationStates: [4] },
+    { number: 33, symbol: 'As', name: 'Arsenic', mass: 74.922, category: 'metalloid', col: 15, row: 4, electronegativity: 2.18, atomicRadius: 114, electronConfig: '[Ar] 3d¹⁰ 4s² 4p³', standardState: 'solid', meltingPoint: 1090, boilingPoint: 887, oxidationStates: [5, 3, -3] },
+    { number: 34, symbol: 'Se', name: 'Selenium', mass: 78.96, category: 'nonmetal', col: 16, row: 4, electronegativity: 2.55, atomicRadius: 103, electronConfig: '[Ar] 3d¹⁰ 4s² 4p⁴', standardState: 'solid', meltingPoint: 494, boilingPoint: 958, oxidationStates: [6, 4, -2] },
+    { number: 35, symbol: 'Br', name: 'Bromine', mass: 79.904, category: 'halogen', col: 17, row: 4, electronegativity: 2.96, atomicRadius: 94, electronConfig: '[Ar] 3d¹⁰ 4s² 4p⁵', standardState: 'liquid', meltingPoint: 266, boilingPoint: 332, oxidationStates: [5, 1, -1] },
+    { number: 36, symbol: 'Kr', name: 'Krypton', mass: 83.798, category: 'noble-gas', col: 18, row: 4, electronegativity: 3.00, atomicRadius: 88, electronConfig: '[Ar] 3d¹⁰ 4s² 4p⁶', standardState: 'gas', meltingPoint: 116, boilingPoint: 120, oxidationStates: [2] },
+
+    // Period 5
+    { number: 37, symbol: 'Rb', name: 'Rubidium', mass: 85.468, category: 'alkali-metal', col: 1, row: 5, electronegativity: 0.82, atomicRadius: 265, electronConfig: '[Kr] 5s¹', standardState: 'solid', meltingPoint: 312, boilingPoint: 961, oxidationStates: [1] },
+    { number: 38, symbol: 'Sr', name: 'Strontium', mass: 87.62, category: 'alkaline-earth', col: 2, row: 5, electronegativity: 0.95, atomicRadius: 219, electronConfig: '[Kr] 5s²', standardState: 'solid', meltingPoint: 1050, boilingPoint: 1655, oxidationStates: [2] },
+    { number: 39, symbol: 'Y', name: 'Yttrium', mass: 88.906, category: 'transition', col: 3, row: 5, electronegativity: 1.22, atomicRadius: 212, electronConfig: '[Kr] 4d¹ 5s²', standardState: 'solid', meltingPoint: 1799, boilingPoint: 3609, oxidationStates: [3] },
+    { number: 40, symbol: 'Zr', name: 'Zirconium', mass: 91.224, category: 'transition', col: 4, row: 5, electronegativity: 1.33, atomicRadius: 206, electronConfig: '[Kr] 4d² 5s²', standardState: 'solid', meltingPoint: 2128, boilingPoint: 4682, oxidationStates: [4] },
+    { number: 41, symbol: 'Nb', name: 'Niobium', mass: 92.906, category: 'transition', col: 5, row: 5, electronegativity: 1.60, atomicRadius: 198, electronConfig: '[Kr] 4d⁴ 5s¹', standardState: 'solid', meltingPoint: 2750, boilingPoint: 5017, oxidationStates: [5, 3] },
+    { number: 42, symbol: 'Mo', name: 'Molybdenum', mass: 95.95, category: 'transition', col: 6, row: 5, electronegativity: 2.16, atomicRadius: 190, electronConfig: '[Kr] 4d⁵ 5s¹', standardState: 'solid', meltingPoint: 2896, boilingPoint: 4912, oxidationStates: [6, 4] },
+    { number: 43, symbol: 'Tc', name: 'Technetium', mass: 98, category: 'transition', col: 7, row: 5, electronegativity: 1.90, atomicRadius: 183, electronConfig: '[Kr] 4d⁵ 5s²', standardState: 'solid', meltingPoint: 2430, boilingPoint: 4538, yearDiscovered: 1937, oxidationStates: [7, 4] },
+    { number: 44, symbol: 'Ru', name: 'Ruthenium', mass: 101.07, category: 'transition', col: 8, row: 5, electronegativity: 2.20, atomicRadius: 178, electronConfig: '[Kr] 4d⁷ 5s¹', standardState: 'solid', meltingPoint: 2607, boilingPoint: 4423, oxidationStates: [8, 6, 4, 3] },
+    { number: 45, symbol: 'Rh', name: 'Rhodium', mass: 102.91, category: 'transition', col: 9, row: 5, electronegativity: 2.28, atomicRadius: 173, electronConfig: '[Kr] 4d⁸ 5s¹', standardState: 'solid', meltingPoint: 2237, boilingPoint: 3968, oxidationStates: [4, 3] },
+    { number: 46, symbol: 'Pd', name: 'Palladium', mass: 106.42, category: 'transition', col: 10, row: 5, electronegativity: 2.20, atomicRadius: 169, electronConfig: '[Kr] 4d¹⁰', standardState: 'solid', meltingPoint: 1828, boilingPoint: 3236, oxidationStates: [4, 2] },
+    { number: 47, symbol: 'Ag', name: 'Silver', mass: 107.87, category: 'transition', col: 11, row: 5, electronegativity: 1.93, atomicRadius: 165, electronConfig: '[Kr] 4d¹⁰ 5s¹', standardState: 'solid', meltingPoint: 1235, boilingPoint: 2435, density: 10.49, oxidationStates: [1], commonUses: 'Jewelry, coins, photography, mirrors, electrical contacts' },
+    { number: 48, symbol: 'Cd', name: 'Cadmium', mass: 112.41, category: 'transition', col: 12, row: 5, electronegativity: 1.69, atomicRadius: 161, electronConfig: '[Kr] 4d¹⁰ 5s²', standardState: 'solid', meltingPoint: 594, boilingPoint: 1040, oxidationStates: [2] },
+    { number: 49, symbol: 'In', name: 'Indium', mass: 114.82, category: 'post-transition', col: 13, row: 5, electronegativity: 1.78, atomicRadius: 156, electronConfig: '[Kr] 4d¹⁰ 5s² 5p¹', standardState: 'solid', meltingPoint: 430, boilingPoint: 2345, oxidationStates: [3] },
+    { number: 50, symbol: 'Sn', name: 'Tin', mass: 118.71, category: 'post-transition', col: 14, row: 5, electronegativity: 1.96, atomicRadius: 145, electronConfig: '[Kr] 4d¹⁰ 5s² 5p²', standardState: 'solid', meltingPoint: 505, boilingPoint: 2875, oxidationStates: [4, 2] },
+    { number: 51, symbol: 'Sb', name: 'Antimony', mass: 121.76, category: 'metalloid', col: 15, row: 5, electronegativity: 2.05, atomicRadius: 133, electronConfig: '[Kr] 4d¹⁰ 5s² 5p³', standardState: 'solid', meltingPoint: 904, boilingPoint: 1860, oxidationStates: [5, 3] },
+    { number: 52, symbol: 'Te', name: 'Tellurium', mass: 127.60, category: 'metalloid', col: 16, row: 5, electronegativity: 2.10, atomicRadius: 123, electronConfig: '[Kr] 4d¹⁰ 5s² 5p⁴', standardState: 'solid', meltingPoint: 723, boilingPoint: 1261, oxidationStates: [6, 4, -2] },
+    { number: 53, symbol: 'I', name: 'Iodine', mass: 126.90, category: 'halogen', col: 17, row: 5, electronegativity: 2.66, atomicRadius: 115, electronConfig: '[Kr] 4d¹⁰ 5s² 5p⁵', standardState: 'solid', meltingPoint: 387, boilingPoint: 457, oxidationStates: [7, 5, -1] },
+    { number: 54, symbol: 'Xe', name: 'Xenon', mass: 131.29, category: 'noble-gas', col: 18, row: 5, electronegativity: 2.60, atomicRadius: 108, electronConfig: '[Kr] 4d¹⁰ 5s² 5p⁶', standardState: 'gas', meltingPoint: 161, boilingPoint: 165, oxidationStates: [8, 6, 4, 2] },
+
+    // Period 6 (Main)
+    { number: 55, symbol: 'Cs', name: 'Cesium', mass: 132.91, category: 'alkali-metal', col: 1, row: 6, electronegativity: 0.79, atomicRadius: 298, electronConfig: '[Xe] 6s¹', standardState: 'solid', meltingPoint: 302, boilingPoint: 944, oxidationStates: [1] },
+    { number: 56, symbol: 'Ba', name: 'Barium', mass: 137.33, category: 'alkaline-earth', col: 2, row: 6, electronegativity: 0.89, atomicRadius: 253, electronConfig: '[Xe] 6s²', standardState: 'solid', meltingPoint: 1000, boilingPoint: 2170, oxidationStates: [2] },
+    { number: 72, symbol: 'Hf', name: 'Hafnium', mass: 178.49, category: 'transition', col: 4, row: 6, electronegativity: 1.30, atomicRadius: 208, electronConfig: '[Xe] 4f¹⁴ 5d² 6s²', standardState: 'solid', meltingPoint: 2506, boilingPoint: 4876, oxidationStates: [4] },
+    { number: 73, symbol: 'Ta', name: 'Tantalum', mass: 180.95, category: 'transition', col: 5, row: 6, electronegativity: 1.50, atomicRadius: 200, electronConfig: '[Xe] 4f¹⁴ 5d³ 6s²', standardState: 'solid', meltingPoint: 3290, boilingPoint: 5731, oxidationStates: [5] },
+    { number: 74, symbol: 'W', name: 'Tungsten', mass: 183.84, category: 'transition', col: 6, row: 6, electronegativity: 2.36, atomicRadius: 193, electronConfig: '[Xe] 4f¹⁴ 5d⁴ 6s²', standardState: 'solid', meltingPoint: 3695, boilingPoint: 5828, oxidationStates: [6] },
+    { number: 75, symbol: 'Re', name: 'Rhenium', mass: 186.21, category: 'transition', col: 7, row: 6, electronegativity: 1.90, atomicRadius: 188, electronConfig: '[Xe] 4f¹⁴ 5d⁵ 6s²', standardState: 'solid', meltingPoint: 3459, boilingPoint: 5869, oxidationStates: [7] },
+    { number: 76, symbol: 'Os', name: 'Osmium', mass: 190.23, category: 'transition', col: 8, row: 6, electronegativity: 2.20, atomicRadius: 185, electronConfig: '[Xe] 4f¹⁴ 5d⁶ 6s²', standardState: 'solid', meltingPoint: 3306, boilingPoint: 5285, oxidationStates: [8] },
+    { number: 77, symbol: 'Ir', name: 'Iridium', mass: 192.22, category: 'transition', col: 9, row: 6, electronegativity: 2.20, atomicRadius: 180, electronConfig: '[Xe] 4f¹⁴ 5d⁷ 6s²', standardState: 'solid', meltingPoint: 2719, boilingPoint: 4701, oxidationStates: [4, 3] },
+    { number: 78, symbol: 'Pt', name: 'Platinum', mass: 195.08, category: 'transition', col: 10, row: 6, electronegativity: 2.28, atomicRadius: 177, electronConfig: '[Xe] 4f¹⁴ 5d⁹ 6s¹', standardState: 'solid', meltingPoint: 2041, boilingPoint: 4098, oxidationStates: [4, 2] },
+    { number: 79, symbol: 'Au', name: 'Gold', mass: 196.97, category: 'transition', col: 11, row: 6, electronegativity: 2.54, atomicRadius: 174, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s¹', standardState: 'solid', meltingPoint: 1337, boilingPoint: 3129, density: 19.32, oxidationStates: [3, 1], commonUses: 'Jewelry, electronics, dentistry, currency reserves, radiation shielding' },
+    { number: 80, symbol: 'Hg', name: 'Mercury', mass: 200.59, category: 'transition', col: 12, row: 6, electronegativity: 2.00, atomicRadius: 171, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s²', standardState: 'liquid', meltingPoint: 234, boilingPoint: 630, density: 13.53, oxidationStates: [2, 1], commonUses: 'Thermometers, barometers, fluorescent lamps, dental amalgam' },
+    { number: 81, symbol: 'Tl', name: 'Thallium', mass: 204.38, category: 'post-transition', col: 13, row: 6, electronegativity: 1.62, atomicRadius: 156, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p¹', standardState: 'solid', meltingPoint: 577, boilingPoint: 1746, density: 11.85, oxidationStates: [3, 1], commonUses: 'Electronics, optics, medical imaging (limited due to toxicity)' },
+    { number: 82, symbol: 'Pb', name: 'Lead', mass: 207.2, category: 'post-transition', col: 14, row: 6, electronegativity: 2.33, atomicRadius: 154, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p²', standardState: 'solid', meltingPoint: 601, boilingPoint: 2022, density: 11.34, oxidationStates: [4, 2], commonUses: 'Batteries, radiation shielding, ammunition, solder' },
+    { number: 83, symbol: 'Bi', name: 'Bismuth', mass: 208.98, category: 'post-transition', col: 15, row: 6, electronegativity: 2.02, atomicRadius: 143, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p³', standardState: 'solid', meltingPoint: 545, boilingPoint: 1837, oxidationStates: [3] },
+    { number: 84, symbol: 'Po', name: 'Polonium', mass: 209, category: 'post-transition', col: 16, row: 6, electronegativity: 2.00, atomicRadius: 135, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p⁴', standardState: 'solid', meltingPoint: 527, boilingPoint: 1235, oxidationStates: [4, 2] },
+    { number: 85, symbol: 'At', name: 'Astatine', mass: 210, category: 'halogen', col: 17, row: 6, electronegativity: 2.20, atomicRadius: 127, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p⁵', standardState: 'solid', meltingPoint: 575, boilingPoint: 610, oxidationStates: [-1] },
+    { number: 86, symbol: 'Rn', name: 'Radon', mass: 222, category: 'noble-gas', col: 18, row: 6, electronegativity: 2.20, atomicRadius: 120, electronConfig: '[Xe] 4f¹⁴ 5d¹⁰ 6s² 6p⁶', standardState: 'gas', meltingPoint: 202, boilingPoint: 211, oxidationStates: [] },
+
+    // Period 7 (Main)
+    { number: 87, symbol: 'Fr', name: 'Francium', mass: 223, category: 'alkali-metal', col: 1, row: 7, electronegativity: 0.70, atomicRadius: 348, electronConfig: '[Rn] 7s¹', standardState: 'solid', meltingPoint: 300, boilingPoint: 950, oxidationStates: [1] },
+    { number: 88, symbol: 'Ra', name: 'Radium', mass: 226, category: 'alkaline-earth', col: 2, row: 7, electronegativity: 0.90, atomicRadius: 283, electronConfig: '[Rn] 7s²', standardState: 'solid', meltingPoint: 973, boilingPoint: 2010, oxidationStates: [2] },
+    { number: 104, symbol: 'Rf', name: 'Rutherfordium', mass: 267, category: 'transition', col: 4, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d² 7s²', standardState: 'solid' },
+    { number: 105, symbol: 'Db', name: 'Dubnium', mass: 268, category: 'transition', col: 5, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d³ 7s²', standardState: 'solid' },
+    { number: 106, symbol: 'Sg', name: 'Seaborgium', mass: 271, category: 'transition', col: 6, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d⁴ 7s²', standardState: 'solid' },
+    { number: 107, symbol: 'Bh', name: 'Bohrium', mass: 272, category: 'transition', col: 7, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d⁵ 7s²', standardState: 'solid' },
+    { number: 108, symbol: 'Hs', name: 'Hassium', mass: 270, category: 'transition', col: 8, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d⁶ 7s²', standardState: 'solid' },
+    { number: 109, symbol: 'Mt', name: 'Meitnerium', mass: 276, category: 'transition', col: 9, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d⁷ 7s²', standardState: 'solid' },
+    { number: 110, symbol: 'Ds', name: 'Darmstadtium', mass: 281, category: 'transition', col: 10, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d⁸ 7s²', standardState: 'solid' },
+    { number: 111, symbol: 'Rg', name: 'Roentgenium', mass: 280, category: 'transition', col: 11, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d⁹ 7s²', standardState: 'solid' },
+    { number: 112, symbol: 'Cn', name: 'Copernicium', mass: 285, category: 'transition', col: 12, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s²', standardState: 'solid' },
+    { number: 113, symbol: 'Nh', name: 'Nihonium', mass: 284, category: 'post-transition', col: 13, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p¹', standardState: 'solid' },
+    { number: 114, symbol: 'Fl', name: 'Flerovium', mass: 289, category: 'post-transition', col: 14, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p²', standardState: 'solid' },
+    { number: 115, symbol: 'Mc', name: 'Moscovium', mass: 288, category: 'post-transition', col: 15, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p³', standardState: 'solid' },
+    { number: 116, symbol: 'Lv', name: 'Livermorium', mass: 293, category: 'post-transition', col: 16, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p⁴', standardState: 'solid' },
+    { number: 117, symbol: 'Ts', name: 'Tennessine', mass: 294, category: 'halogen', col: 17, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p⁵', standardState: 'solid' },
+    { number: 118, symbol: 'Og', name: 'Oganesson', mass: 294, category: 'noble-gas', col: 18, row: 7, electronegativity: undefined, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 6d¹⁰ 7s² 7p⁶', standardState: 'solid', yearDiscovered: 2002 },
+
+    // Lanthanides (Row 9)
+    { number: 57, symbol: 'La', name: 'Lanthanum', mass: 138.91, category: 'lanthanide', col: 3, row: 9, electronegativity: 1.10, atomicRadius: 240, electronConfig: '[Xe] 5d¹ 6s²', standardState: 'solid', meltingPoint: 1193, boilingPoint: 3737, oxidationStates: [3] },
+    { number: 58, symbol: 'Ce', name: 'Cerium', mass: 140.12, category: 'lanthanide', col: 4, row: 9, electronegativity: 1.12, atomicRadius: 235, electronConfig: '[Xe] 4f¹ 5d¹ 6s²', standardState: 'solid', meltingPoint: 1068, boilingPoint: 3716, oxidationStates: [3] },
+    { number: 59, symbol: 'Pr', name: 'Praseodymium', mass: 140.91, category: 'lanthanide', col: 5, row: 9, electronegativity: 1.13, atomicRadius: 239, electronConfig: '[Xe] 4f³ 6s²', standardState: 'solid', meltingPoint: 1208, boilingPoint: 3793, oxidationStates: [3] },
+    { number: 60, symbol: 'Nd', name: 'Neodymium', mass: 144.24, category: 'lanthanide', col: 6, row: 9, electronegativity: 1.14, atomicRadius: 229, electronConfig: '[Xe] 4f⁴ 6s²', standardState: 'solid', meltingPoint: 1297, boilingPoint: 3347, oxidationStates: [3] },
+    { number: 61, symbol: 'Pm', name: 'Promethium', mass: 145, category: 'lanthanide', col: 7, row: 9, electronegativity: 1.13, atomicRadius: 236, electronConfig: '[Xe] 4f⁵ 6s²', standardState: 'solid', meltingPoint: 1315, boilingPoint: 3273, oxidationStates: [3] },
+    { number: 62, symbol: 'Sm', name: 'Samarium', mass: 150.36, category: 'lanthanide', col: 8, row: 9, electronegativity: 1.17, atomicRadius: 229, electronConfig: '[Xe] 4f⁶ 6s²', standardState: 'solid', meltingPoint: 1345, boilingPoint: 2067, oxidationStates: [3] },
+    { number: 63, symbol: 'Eu', name: 'Europium', mass: 151.96, category: 'lanthanide', col: 9, row: 9, electronegativity: 1.20, atomicRadius: 233, electronConfig: '[Xe] 4f⁷ 6s²', standardState: 'solid', meltingPoint: 1099, boilingPoint: 1802, oxidationStates: [3] },
+    { number: 64, symbol: 'Gd', name: 'Gadolinium', mass: 157.25, category: 'lanthanide', col: 10, row: 9, electronegativity: 1.20, atomicRadius: 237, electronConfig: '[Xe] 4f⁷ 5d¹ 6s²', standardState: 'solid', meltingPoint: 1585, boilingPoint: 3546, oxidationStates: [3] },
+    { number: 65, symbol: 'Tb', name: 'Terbium', mass: 158.93, category: 'lanthanide', col: 11, row: 9, electronegativity: 1.20, atomicRadius: 221, electronConfig: '[Xe] 4f⁹ 6s²', standardState: 'solid', meltingPoint: 1629, boilingPoint: 3503, oxidationStates: [3] },
+    { number: 66, symbol: 'Dy', name: 'Dysprosium', mass: 162.50, category: 'lanthanide', col: 12, row: 9, electronegativity: 1.22, atomicRadius: 229, electronConfig: '[Xe] 4f¹⁰ 6s²', standardState: 'solid', meltingPoint: 1680, boilingPoint: 2840, oxidationStates: [3] },
+    { number: 67, symbol: 'Ho', name: 'Holmium', mass: 164.93, category: 'lanthanide', col: 13, row: 9, electronegativity: 1.23, atomicRadius: 216, electronConfig: '[Xe] 4f¹¹ 6s²', standardState: 'solid', meltingPoint: 1734, boilingPoint: 2993, oxidationStates: [3] },
+    { number: 68, symbol: 'Er', name: 'Erbium', mass: 167.26, category: 'lanthanide', col: 14, row: 9, electronegativity: 1.24, atomicRadius: 235, electronConfig: '[Xe] 4f¹² 6s²', standardState: 'solid', meltingPoint: 1802, boilingPoint: 3141, oxidationStates: [3] },
+    { number: 69, symbol: 'Tm', name: 'Thulium', mass: 168.93, category: 'lanthanide', col: 15, row: 9, electronegativity: 1.25, atomicRadius: 227, electronConfig: '[Xe] 4f¹³ 6s²', standardState: 'solid', meltingPoint: 1818, boilingPoint: 2223, oxidationStates: [3] },
+    { number: 70, symbol: 'Yb', name: 'Ytterbium', mass: 173.05, category: 'lanthanide', col: 16, row: 9, electronegativity: 1.10, atomicRadius: 222, electronConfig: '[Xe] 4f¹⁴ 6s²', standardState: 'solid', meltingPoint: 1097, boilingPoint: 1469, oxidationStates: [3] },
+    { number: 71, symbol: 'Lu', name: 'Lutetium', mass: 174.97, category: 'lanthanide', col: 17, row: 9, electronegativity: 1.27, atomicRadius: 217, electronConfig: '[Xe] 4f¹⁴ 5d¹ 6s²', standardState: 'solid', meltingPoint: 1925, boilingPoint: 3675, oxidationStates: [3] },
+
+    // Actinides (Row 10)
+    { number: 89, symbol: 'Ac', name: 'Actinium', mass: 227, category: 'actinide', col: 3, row: 10, electronegativity: 1.10, atomicRadius: 260, electronConfig: '[Rn] 6d¹ 7s²', standardState: 'solid', meltingPoint: 1323, boilingPoint: 3471, oxidationStates: [3] },
+    { number: 90, symbol: 'Th', name: 'Thorium', mass: 232.04, category: 'actinide', col: 4, row: 10, electronegativity: 1.30, atomicRadius: 237, electronConfig: '[Rn] 6d² 7s²', standardState: 'solid', meltingPoint: 2115, boilingPoint: 5061, oxidationStates: [4] },
+    { number: 91, symbol: 'Pa', name: 'Protactinium', mass: 231.04, category: 'actinide', col: 5, row: 10, electronegativity: 1.50, atomicRadius: 243, electronConfig: '[Rn] 5f² 6d¹ 7s²', standardState: 'solid', meltingPoint: 1841, boilingPoint: 4300, oxidationStates: [5, 4] },
+    { number: 92, symbol: 'U', name: 'Uranium', mass: 238.03, category: 'actinide', col: 6, row: 10, electronegativity: 1.38, atomicRadius: 240, electronConfig: '[Rn] 5f³ 6d¹ 7s²', standardState: 'solid', meltingPoint: 1405, boilingPoint: 4404, density: 19.05, oxidationStates: [6, 5, 4, 3], commonUses: 'Nuclear power, nuclear weapons, dating rocks, depleted uranium armor' },
+    { number: 93, symbol: 'Np', name: 'Neptunium', mass: 237, category: 'actinide', col: 7, row: 10, electronegativity: 1.36, atomicRadius: 221, electronConfig: '[Rn] 5f⁴ 6d¹ 7s²', standardState: 'solid', meltingPoint: 917, boilingPoint: 4273, oxidationStates: [5] },
+    { number: 94, symbol: 'Pu', name: 'Plutonium', mass: 244, category: 'actinide', col: 8, row: 10, electronegativity: 1.28, atomicRadius: 243, electronConfig: '[Rn] 5f⁶ 7s²', standardState: 'solid', meltingPoint: 913, boilingPoint: 3501, oxidationStates: [4] },
+    { number: 95, symbol: 'Am', name: 'Americium', mass: 243, category: 'actinide', col: 9, row: 10, electronegativity: 1.30, atomicRadius: 244, electronConfig: '[Rn] 5f⁷ 7s²', standardState: 'solid', meltingPoint: 1449, boilingPoint: 2880, oxidationStates: [3] },
+    { number: 96, symbol: 'Cm', name: 'Curium', mass: 247, category: 'actinide', col: 10, row: 10, electronegativity: 1.30, atomicRadius: 245, electronConfig: '[Rn] 5f⁷ 6d¹ 7s²', standardState: 'solid', meltingPoint: 1613, boilingPoint: 3383, oxidationStates: [3] },
+    { number: 97, symbol: 'Bk', name: 'Berkelium', mass: 247, category: 'actinide', col: 11, row: 10, electronegativity: 1.30, atomicRadius: 244, electronConfig: '[Rn] 5f⁹ 7s²', standardState: 'solid', meltingPoint: 1259, boilingPoint: 2900, oxidationStates: [3] },
+    { number: 98, symbol: 'Cf', name: 'Californium', mass: 251, category: 'actinide', col: 12, row: 10, electronegativity: 1.30, atomicRadius: 245, electronConfig: '[Rn] 5f¹⁰ 7s²', standardState: 'solid', meltingPoint: 1173, boilingPoint: 1743, oxidationStates: [3] },
+    { number: 99, symbol: 'Es', name: 'Einsteinium', mass: 252, category: 'actinide', col: 13, row: 10, electronegativity: 1.30, atomicRadius: 245, electronConfig: '[Rn] 5f¹¹ 7s²', standardState: 'solid', meltingPoint: 1133, boilingPoint: 1269, oxidationStates: [3] },
+    { number: 100, symbol: 'Fm', name: 'Fermium', mass: 257, category: 'actinide', col: 14, row: 10, electronegativity: 1.30, atomicRadius: undefined, electronConfig: '[Rn] 5f¹² 7s²', standardState: 'solid', meltingPoint: 1800, oxidationStates: [3] },
+    { number: 101, symbol: 'Md', name: 'Mendelevium', mass: 258, category: 'actinide', col: 15, row: 10, electronegativity: 1.30, atomicRadius: undefined, electronConfig: '[Rn] 5f¹³ 7s²', standardState: 'solid', meltingPoint: 1100, oxidationStates: [3] },
+    { number: 102, symbol: 'No', name: 'Nobelium', mass: 259, category: 'actinide', col: 16, row: 10, electronegativity: 1.30, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 7s²', standardState: 'solid', meltingPoint: 1100, oxidationStates: [2] },
+    { number: 103, symbol: 'Lr', name: 'Lawrencium', mass: 262, category: 'actinide', col: 17, row: 10, electronegativity: 1.30, atomicRadius: undefined, electronConfig: '[Rn] 5f¹⁴ 7s² 7p¹', standardState: 'solid', meltingPoint: 1900, yearDiscovered: 1961, oxidationStates: [3] },
+];
+
+// Get min/max values for heatmap normalization
+export const getElectronegativityRange = () => {
+    const values = ELEMENTS.filter(e => e.electronegativity).map(e => e.electronegativity!);
+    return { min: Math.min(...values), max: Math.max(...values) };
+};
+
+export const getAtomicRadiusRange = () => {
+    const values = ELEMENTS.filter(e => e.atomicRadius).map(e => e.atomicRadius!);
+    return { min: Math.min(...values), max: Math.max(...values) };
+};

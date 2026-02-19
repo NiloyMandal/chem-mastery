@@ -1,0 +1,9 @@
+# Temporary ESLint ignore while fixing legacy code
+src/app/admin/page.tsx
+src/app/parent/page.tsx
+src/app/student/modules/acid-base-titration/page.tsx
+src/components/PeriodicTable.tsx
+src/components/OrganicCanvas.tsx
+src/components/auth/AuthPage.tsx
+src/components/student/DoubtForum.tsx
+src/hooks/useFeeStatus.ts
