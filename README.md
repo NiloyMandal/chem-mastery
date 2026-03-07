@@ -1,37 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ChemManager
 
-## Getting Started
+ChemManager is a comprehensive digital platform designed for chemistry coaching centers. It streamlines administrative tasks for tutors while providing an engaging, interactive learning experience for students.
 
-First, run the development server:
+## 🌟 Key Features
+
+### For Tutors (Admin Console)
+
+- **Assignment Publisher**: Create, publish, and manage tiered daily assignments (Levels 1-5).
+- **Parent Communication Module**: Send structured updates and performance reports directly to parents.
+- **Attendance & Fee Management**: Easily track student presence and manage fee records.
+- **Interactive Teaching Tools**: Access presentation tools, 3D molecule viewers, and virtual labs to enhance classroom learning.
+
+### For Students (Learning Portal)
+
+- **Assignment Solver**: Access and solve daily tiered assignments with immediate feedback.
+- **Mentorship Scheduling**: Book bi-weekly 15-minute 1-on-1 guidance sessions with mentors.
+- **Recorded & Live Classes**: Catch up on missed lectures or review past concepts in a centralized gallery.
+- **Weekly Study Planner**: Stay organized by breaking down assignments and study goals into manageable daily tasks.
+- **Interactive Learning Tools**:
+  - 🧪 **Virtual Labs**: Safely simulate chemical reactions and titration.
+  - 🧬 **3D Molecule Viewer**: Inspect and interact with complex molecular structures in full 3D.
+  - 🎨 **Organic Canvas**: Draw and visualize organic chemistry structures.
+  - ⚛️ **Smart Periodic Table**: Explore element properties, electronegativity trends, state of matter at different temperatures, and more.
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (React)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **3D Rendering**: [Three.js](https://threejs.org/) & [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/)
+
+## 🛠️ Getting Started
+
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗️ Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/`: Next.js App Router pages (admin, student, auth, etc.)
+- `src/components/`: Reusable UI components and feature modules
+- `src/components/admin/`: Admin-specific components (AssignmentPublisher, ParentCommunication)
+- `src/components/student/`: Student-specific components (AssignmentSolver, MentorshipScheduler, StudyPlanner)
+- `src/types/`: TypeScript definitions
 
-## Learn More
+## 🎨 Design Philosophy
 
-To learn more about Next.js, take a look at the following resources:
+ChemManager uses a modern, dynamic, and premium aesthetic:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Glassmorphism**: Elegant translucent UI elements.
+- **Subtle Gradients**: Curated color palettes with smooth transitions.
+- **Micro-animations**: Enhanced user experience with interactive hover states and motion.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# chem-mastery
+This project is proprietary and confidential.

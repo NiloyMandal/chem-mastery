@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import MoleculeViewer from '@/components/MoleculeViewer';
+import MoleculeViewer from "@/components/MoleculeViewer";
 
 export default function MoleculeViewerPage() {
-    return <MoleculeViewer />;
+  return <MoleculeViewer />;
 }

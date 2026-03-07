@@ -15,8 +15,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ChemMastery - Master Chemistry Like Never Before",
-  description: "Interactive chemistry learning platform with virtual labs, 3D molecular viewer, and gamified challenges",
+  title: "ChemManager - Master Chemistry Like Never Before",
+  description:
+    "Interactive chemistry learning platform with virtual labs, 3D molecular viewer, and gamified challenges",
 };
 
 export default function RootLayout({
@@ -27,8 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white min-h-screen`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white min-h-screen`}>
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

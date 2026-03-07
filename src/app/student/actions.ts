@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { signOut } from '@/auth';
-import { redirect } from 'next/navigation';
+import { signOut } from "@/auth";
+import { redirect } from "next/navigation";
 
 export async function handleLogout() {
-    await signOut({ redirect: false });
-    redirect('/');
+  await signOut({ redirect: false });
+  redirect("/");
 }

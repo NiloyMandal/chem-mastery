@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { ReactNode } from 'react';
-import { AlertTriangle } from 'lucide-react';
+import React, { ReactNode } from "react";
+import { AlertTriangle } from "lucide-react";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -16,7 +16,10 @@ interface ErrorBoundaryState {
 /**
  * Error boundary component for catching and displaying errors gracefully
  */
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -28,7 +31,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log error to console and potentially to error tracking service
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
   resetError = () => {
@@ -49,16 +52,15 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
               </h1>
               <p className="text-gray-600 text-center mb-4 text-sm">
                 {this.state.error?.message ||
-                  'An unexpected error occurred. Please try again.'}
+                  "An unexpected error occurred. Please try again."}
               </p>
               <button
                 onClick={this.resetError}
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-              >
+                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
                 Try again
               </button>
 
-              {process.env.NODE_ENV === 'development' && (
+              {process.env.NODE_ENV === "development" && (
                 <details className="mt-6 text-xs">
                   <summary className="cursor-pointer text-gray-500 hover:text-gray-700 font-semibold">
                     Error details (Development only)

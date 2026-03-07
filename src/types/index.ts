@@ -1,8 +1,8 @@
 /**
- * Centralized type definitions for ChemMastery (Frontend-Only Mock)
+ * Centralized type definitions for ChemManager (Frontend-Only Mock)
  */
 
-export type UserRole = 'STUDENT' | 'TEACHER' | 'ADMIN' | 'PARENT';
+export type UserRole = "STUDENT" | "TEACHER" | "ADMIN" | "PARENT";
 
 export interface User {
   id: string;
@@ -26,9 +26,9 @@ export interface StudentProfile extends User {
 export interface Resource {
   id: string;
   title: string;
-  type: 'VIDEO' | 'DOCUMENT' | 'INTERACTIVE' | 'SIMULATION';
+  type: "VIDEO" | "DOCUMENT" | "INTERACTIVE" | "SIMULATION";
   url: string;
-  access: 'FREE' | 'PREMIUM';
+  access: "FREE" | "PREMIUM";
   tags: string[];
 }
 
@@ -51,7 +51,7 @@ export interface Chemical {
   id: string;
   name: string;
   hexColor: string;
-  state: 'solid' | 'liquid' | 'gas';
+  state: "solid" | "liquid" | "gas";
   formula: string;
 }
 
@@ -60,5 +60,5 @@ export interface ReactionResult {
   resultHex: string;
   temperature: number;
   phValue: number;
-  dangerLevel: 'safe' | 'warning' | 'dangerous';
+  dangerLevel: "safe" | "warning" | "dangerous";
 }

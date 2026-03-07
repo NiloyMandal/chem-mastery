@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useSession } from 'next-auth/react';
-import { ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
-import type { UserRole } from '@/types';
+import { useSession } from "next-auth/react";
+import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import type { UserRole } from "@/types";
 
 interface AuthorizedProps {
   children: ReactNode;
@@ -15,18 +15,24 @@ interface AuthorizedProps {
  * Component wrapper that enforces role-based access control
  * Hides content from unauthorized users
  */
-export function RoleGate({ children, allowedRoles, fallback }: AuthorizedProps) {
+export function RoleGate({
+  children,
+  allowedRoles,
+  fallback,
+}: AuthorizedProps) {
   const { data: session, status } = useSession();
 
-  if (status === 'loading') {
-    return <div className="flex items-center justify-center p-4">Loading...</div>;
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center p-4">Loading...</div>
+    );
   }
 
   if (!session?.user) {
     return (fallback as ReactNode) || null;
   }
 
-  const userRole = (session.user.role || 'STUDENT') as UserRole;
+  const userRole = (session.user.role || "STUDENT") as UserRole;
 
   if (!allowedRoles.includes(userRole)) {
     return (fallback as ReactNode) || null;
@@ -44,11 +50,14 @@ interface RequireAuthProps {
  * Component that requires authentication
  * Redirects to login if not authenticated
  */
-export function RequireAuth({ children, redirectTo = '/login' }: RequireAuthProps) {
+export function RequireAuth({
+  children,
+  redirectTo = "/login",
+}: RequireAuthProps) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return <div className="animate-pulse">Loading...</div>;
   }
 
@@ -70,13 +79,12 @@ interface AdminOnlyProps {
 export function AdminOnly({ children }: AdminOnlyProps) {
   return (
     <RoleGate
-      allowedRoles={['ADMIN']}
+      allowedRoles={["ADMIN"]}
       fallback={
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
           <p className="text-sm text-red-800">Admin access only.</p>
         </div>
-      }
-    >
+      }>
       {children}
     </RoleGate>
   );
@@ -92,13 +100,12 @@ interface TeacherOnlyProps {
 export function TeacherOnly({ children }: TeacherOnlyProps) {
   return (
     <RoleGate
-      allowedRoles={['TEACHER', 'ADMIN']}
+      allowedRoles={["TEACHER", "ADMIN"]}
       fallback={
         <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <p className="text-sm text-blue-800">Teacher access only.</p>
         </div>
-      }
-    >
+      }>
       {children}
     </RoleGate>
   );
@@ -114,13 +121,12 @@ interface StudentOnlyProps {
 export function StudentOnly({ children }: StudentOnlyProps) {
   return (
     <RoleGate
-      allowedRoles={['STUDENT']}
+      allowedRoles={["STUDENT"]}
       fallback={
         <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
           <p className="text-sm text-purple-800">Student access only.</p>
         </div>
-      }
-    >
+      }>
       {children}
     </RoleGate>
   );
