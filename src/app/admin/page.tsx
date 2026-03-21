@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, ReactNode, ReactElement } from "react";
+import React, { useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -339,21 +339,19 @@ export default function AdminDashboard() {
         </div>
         <nav className="flex-1 px-4 space-y-2">
           {[
-            { icon: <LayoutDashboard />, label: "Overview" },
-            { icon: <Users />, label: "Students" },
-            { icon: <Calendar />, label: "Schedule" },
-            { icon: <CreditCard />, label: "Fee Manager" },
-            { icon: <BookOpen />, label: "Assignments" },
-            { icon: <MessageSquare />, label: "Messages" },
-            { icon: <Settings />, label: "Settings" },
+            { icon: <LayoutDashboard className="w-5 h-5" />, label: "Overview" },
+            { icon: <Users className="w-5 h-5" />, label: "Students" },
+            { icon: <Calendar className="w-5 h-5" />, label: "Schedule" },
+            { icon: <CreditCard className="w-5 h-5" />, label: "Fee Manager" },
+            { icon: <BookOpen className="w-5 h-5" />, label: "Assignments" },
+            { icon: <MessageSquare className="w-5 h-5" />, label: "Messages" },
+            { icon: <Settings className="w-5 h-5" />, label: "Settings" },
           ].map((item) => (
             <button
               key={item.label}
               onClick={() => setActiveTab(item.label)}
               className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium transition-all ${activeTab === item.label ? "bg-indigo-600 text-white" : "text-slate-400 hover:bg-slate-800 hover:text-white"}`}>
-              {React.cloneElement(item.icon as ReactElement, {
-                className: "w-5 h-5",
-              })}{" "}
+              {item.icon}{" "}
               {item.label}
             </button>
           ))}
